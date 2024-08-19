@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -28,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
+                QuitGame();
                 return;
             }
             else
@@ -43,5 +45,14 @@ public class EnemyMovement : MonoBehaviour
 
         rb.velocity = direction * moveSpeed;
     }
-
+    void QuitGame()
+    {
+        #if UNITY_EDITOR
+        // Simulate quitting in the Unity Editor
+        EditorApplication.isPlaying = false;
+        #else
+        // Quit the application in a build
+        Application.Quit();
+        #endif
+    }
 }
