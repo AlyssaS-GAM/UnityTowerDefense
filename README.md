@@ -1,4 +1,5 @@
 # Defend the Realm
+This game was student made.
 
 ## Genre
 Tower Defense
