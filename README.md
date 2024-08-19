@@ -40,4 +40,4 @@ Resource Display: Shows available resources for building towers.
 Tower Panel: Buttons for building towers.
 
 ## License
-This game is under the MIT license.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
