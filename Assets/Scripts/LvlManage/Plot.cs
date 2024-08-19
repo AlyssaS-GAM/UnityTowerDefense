@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour
 {
-
+    // variables
     [Header("References")]
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Color hoverColor;
@@ -13,6 +13,7 @@ public class Plot : MonoBehaviour
 
     private Color startColor;
 
+    // manage the color of the plot when the player hovers their mouse over it
     private void Start()
     {
         startColor = sr.color;
@@ -28,6 +29,7 @@ public class Plot : MonoBehaviour
         sr.color = startColor;
     }
 
+    // attempt to place the currently selected turret down on the plot the player clicks on
     private void OnMouseDown()
     {
         if (tower != null)  return;

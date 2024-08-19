@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-
+    // variables
     public static BuildManager main;
 
     [Header("References")]
@@ -12,8 +12,7 @@ public class BuildManager : MonoBehaviour
 
     private int selectedTower = 0;
 
-
-
+    // manage the towers the player attempts to build
     private void Awake()
     {
         main = this;

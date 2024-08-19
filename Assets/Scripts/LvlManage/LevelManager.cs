@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
+    // variables
     public static LevelManager main;
 
     public Transform startPoint;
@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
     public int currency;
 
+    // manage currency and path
     private void Awake()
     {
         main = this;

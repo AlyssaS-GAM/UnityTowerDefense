@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    // variables
     [Header("Attributes")]
     [SerializeField] private int hitPoints = 2;
     [SerializeField] private int currencyWorth = 50;
     private bool isDestroyed = false;
 
+    // deal damage to enemies
     public void TakeDamage(int dmg)
     {
         hitPoints -= dmg;

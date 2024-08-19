@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    // variables
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
 
@@ -13,26 +14,24 @@ public class Bullet : MonoBehaviour
 
     private Transform target;
 
+    // set the new target from an outside class to our local variable
     public void SetTarget(Transform _target)
     {
         target = _target; 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         if (!target) return;
+
+        // follow an enemy
         Vector2 direction = (target.position - transform.position).normalized;
 
         rb.velocity = direction * bulletSpeed;
     }
 
+    // destroy the bullet when it hits an enemy
     private void OnCollisionEnter2D(Collision2D other)
     {
         other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);

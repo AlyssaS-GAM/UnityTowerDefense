@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    // Variables
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
 
@@ -14,22 +15,25 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
     private int pathIndex = 0;
 
+    // Set the initial waypoint
     private void Start()
     {
         target = LevelManager.main.path[pathIndex];
     }
 
+    // Find where the enemy needs to move towards
     private void Update()
     {
         if (Vector2.Distance(target.position, transform.position)<= 0.1f )
         {
             pathIndex++;
 
+            // END GAME if enemy makes it to the end
             if(pathIndex >= LevelManager.main.path.Length)
             {
                 EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
-                QuitGame();
+                QuitGame(); // END THE GAME HERE
                 return;
             }
             else
@@ -39,6 +43,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    // Actually move the enemy.
     private void FixedUpdate()
     {
         Vector2 direction = (target.position - transform.position).normalized;

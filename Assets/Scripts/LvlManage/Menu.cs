@@ -8,15 +8,9 @@ public class Menu : MonoBehaviour
     [Header("References")]
     [SerializeField] TextMeshProUGUI currencyUI;
 
+    // display current currency for shop
     private void OnGUI()
     {
         currencyUI.text = LevelManager.main.currency.ToString();
     }
-
-    public void SetSelected()
-    {
-
-    }
-
-
 }

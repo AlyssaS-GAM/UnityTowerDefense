@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
+    // Variables
     [Header("References")]
     [SerializeField] private GameObject[] enemyPrefabs;
 
@@ -25,11 +26,13 @@ public class EnemySpawner : MonoBehaviour
     private float eps; //enemies per second
     private bool isSpawning = false;
 
+    // keep track of enemies destroyed
     private void Awake()
     {
         onEnemyDestroy.AddListener(EnemyDestroyed);
     }
 
+    // start next wave
     private void Start()
     {
         StartCoroutine(StartWave());
@@ -37,10 +40,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        // dont do anything if its not the time to spawn enemies
         if (!isSpawning) return;
 
+        // manage time
         timeSinceLastSpawn += Time.deltaTime;
-
         if(timeSinceLastSpawn >= (1f / eps) && enemiesLeftToSpawn > 0)
         {
             SpawnEnemy();
@@ -49,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
             timeSinceLastSpawn = 0f;
         }
 
+        // end the current wave
         if(enemiesAlive == 0 && enemiesLeftToSpawn == 0)
         {
             EndWave();
@@ -56,12 +61,13 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    // keep track of enemies alive
     private void EnemyDestroyed()
     {
         enemiesAlive--; 
     }
 
-
+    // start the next wave
     private IEnumerator StartWave()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
@@ -70,6 +76,7 @@ public class EnemySpawner : MonoBehaviour
         eps = EnemiesPerSecond();
     }
 
+    // end the current wave
     private void EndWave()
     {
         isSpawning = false;
@@ -78,6 +85,7 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(StartWave());
     }
 
+    // spawn an enemy
     private void SpawnEnemy()
     {
         int index = Random.Range(0, enemyPrefabs.Length);
@@ -86,11 +94,13 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    // scaling
     private int EnemiesPerWave()
     {
         return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor));
     }
 
+    // scaling
     private float EnemiesPerSecond()
     {
         return Mathf.Clamp(enemiesPerSecond * Mathf.Pow(currentWave, difficultyScalingFactor), 0f, enemiesPerSecondCap);

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+// create a simple struct/class for Tower objects to more easily create more types of towers later down the line in development
 [Serializable]
 public class Tower 
 {
