@@ -34,7 +34,8 @@ public class LevelManager : MonoBehaviour
             //buy item
             currency -= amount;
             return true;
-        }else
+        }
+        else
         {
             Debug.Log("You do not have enough to purchase this item");
             return false;

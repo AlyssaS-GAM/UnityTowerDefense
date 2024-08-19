@@ -30,11 +30,18 @@ public class Plot : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Build tower here: " + name);
         if (tower != null)  return;
 
-        GameObject towerToBuild = BuildManager.main.GetSelectedTower();
-        Instantiate(towerToBuild, transform.position, Quaternion.identity);
+        Tower towerToBuild = BuildManager.main.GetSelectedTower();
+
+        if (towerToBuild.cost > LevelManager.main.currency)
+        {
+            return;
+        }
+
+        LevelManager.main.SpendCurrency(towerToBuild.cost);
+
+        Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
 
     }
 
