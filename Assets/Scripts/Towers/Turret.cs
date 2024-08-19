@@ -95,8 +95,8 @@ public class Turret : MonoBehaviour
     // draw the radius in the scene editor so i know the radius is working correctly
     private void OnDrawGizmosSelected()
     { 
-        Handles.color = Color.cyan;
-        Handles.DrawWireDisc(transform.position, transform.forward, targettingRange);
+        //Handles.color = Color.cyan;
+       // Handles.DrawWireDisc(transform.position, transform.forward, targettingRange);
 
     }
 
